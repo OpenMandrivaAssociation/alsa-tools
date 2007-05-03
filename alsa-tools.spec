@@ -10,7 +10,7 @@
 
 %define tool_fver 1.0.14
 %define firmware_fver 1.0.14
-%define firm_beta rc3
+%define firm_beta rc4
 %define tool_beta rc3
 %define ld10k1_major 0
 
@@ -32,7 +32,7 @@
 Name:		alsa-tools
 Version:	%tool_fver
 %if %firm_beta
-Release: %mkrel 0.%{firm_beta}.1
+Release: %mkrel 0.%{firm_beta}.2
 %else
 Release:	%mkrel 2
 %endif
