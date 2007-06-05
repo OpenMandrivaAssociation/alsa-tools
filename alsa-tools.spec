@@ -10,8 +10,8 @@
 
 %define tool_fver 1.0.14
 %define firmware_fver 1.0.14
-%define firm_beta rc4
-%define tool_beta rc3
+%define firm_beta 0
+%define tool_beta 0
 %define ld10k1_major 0
 
 %define ld10k1_name lo10k1
@@ -34,7 +34,7 @@ Version:	%tool_fver
 %if %firm_beta
 Release: %mkrel 0.%{firm_beta}.2
 %else
-Release:	%mkrel 2
+Release:	%mkrel 1
 %endif
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 License:	GPL
@@ -83,6 +83,14 @@ This software is completely useless to 99.99 percent of users
 out there. It is mostly of use to those interested in audio
 coding research and evaluating codecs. It could theoretically
 be used as a portion of a DVD playback system for unix systems. 
+
+%package -n	aica-firmware
+Summary:	Firwmare for Sega Dreamcast
+License:	GPL
+Group:		Sound
+
+%description -n	aica-firmware
+This is the firmware data for Sega Dreamcast.
 
 %package -n	asihpi-firmware
 Summary:	Firwmare for asihpi drivers
@@ -490,6 +498,10 @@ EOF
 %{_bindir}/extract_ac3
 %{_bindir}/dither_test
 %{_bindir}/imdct_test
+
+%files -n	aica-firmware
+%defattr(-,root,root)
+/lib/firmware/aica_firmware.bin
 
 %files -n	asihpi-firmware
 %defattr(-,root,root)
