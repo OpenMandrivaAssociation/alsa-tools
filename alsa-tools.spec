@@ -34,7 +34,7 @@ Version:	%tool_fver
 %if %firm_beta
 Release: %mkrel 0.%{firm_beta}.2
 %else
-Release:	%mkrel 1
+Release:	%mkrel 2
 %endif
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 License:	GPL
