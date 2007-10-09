@@ -142,7 +142,7 @@ Group:		Sound
 This is the firmware data for Emagic EMI 2|6 Audio Interface.
 
 %package -n	emu1010-firmware
-Summary:	Firwmare for EMU Systems EMU1010 PCI card.
+Summary:	Firwmare for EMU Systems EMU1010 PCI card
 License:	GPL
 Group:		Sound
 
