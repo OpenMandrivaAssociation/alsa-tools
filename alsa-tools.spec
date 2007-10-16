@@ -390,7 +390,9 @@ popd
 %build
 for i in %{MODULES} %firm_name; do
 pushd ${i}
-%configure --with-hotplug-dir=/lib/firmware
+# (tv) force it not to lookup aclocal-1.9 & co
+autoreconf
+%configure2_5x --with-hotplug-dir=/lib/firmware
 %make
 popd
 done
