@@ -50,7 +50,6 @@ BuildRequires:	fltk-devel
 BuildRequires:	gtk2-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	automake1.7
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 Advanced Linux Sound Architecture (ALSA) utils. Modularized 
