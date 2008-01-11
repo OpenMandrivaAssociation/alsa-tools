@@ -411,11 +411,7 @@ install -m755 ac3dec/test/dither_test %{buildroot}%{_bindir}/dither_test
 install -m755 ac3dec/test/imdct_test %{buildroot}%{_bindir}/imdct_test
 
 # install menu entries
-install -d %{buildroot}%{_menudir}
 
-cat << EOF > %{buildroot}%{_menudir}/echomixer
-?package(echomixer): command="echomixer" icon="sound_section.png" section="Multimedia/Sound" title="Echomixer" longtitle="Control tool for Echoaudio soundcards" needs="x11" xdg="true"
-EOF
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-echomixer.desktop << EOF
@@ -429,9 +425,6 @@ Type=Application
 Categories=X-MandrivaLinux-Multimedia-Sound;Audio;
 EOF
 
-cat << EOF > %{buildroot}%{_menudir}/envy24control
-?package(envy24control): command="envy24control" icon="sound_section.png" section="Multimedia/Sound" title="Envy24Control" longtitle="Control tool for Envy24 (ice1712) based soundcards" needs="x11" xdg="true"
-EOF
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-envy24control.desktop << EOF
@@ -445,13 +438,7 @@ Type=Application
 Categories=X-MandrivaLinux-Multimedia-Sound;Audio;
 EOF
 
-cat << EOF > %{buildroot}%{_menudir}/hdspmixer
-?package(hdspmixer): command="hdspmixer" icon="sound_section.png" section="Multimedia/Sound" title="HDSP Mixer" longtitle="Mixer for RME Hammerfall" needs="x11" xdg="true"
-EOF
 
-cat << EOF > %{buildroot}%{_menudir}/rmedigicontrol
-?package(rmedigicontrol): command="rmedigicontrol" icon="sound_section.png" section="Multimedia/Sound" title="RME Digicontrol" longtitle="Control panel for RME Hammerfall" needs="x11" xdg="true"
-EOF
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-rmedigicontrol.desktop << EOF
@@ -518,7 +505,6 @@ EOF
 %defattr(-,root,root)
 %doc echomixer/AUTHORS echomixer/COPYING echomixer/README
 %{_bindir}/echomixer
-%{_menudir}/echomixer
 %_datadir/applications/mandriva-echomixer.desktop
 /lib/firmware/ea
 
@@ -535,7 +521,6 @@ EOF
 %doc envy24control/AUTHORS envy24control/COPYING envy24control/README
 %{_bindir}/envy24control
 %{_mandir}/man1/envy24control.1*
-%{_menudir}/envy24control
 %_datadir/applications/mandriva-envy24control.desktop
 #%{_iconsdir}/envy24control.png
 
@@ -569,7 +554,6 @@ EOF
 %defattr(-,root,root)
 %doc hdspmixer/AUTHORS hdspmixer/COPYING hdspmixer/README
 %{_bindir}/hdspmixer
-%{_menudir}/hdspmixer
 %_datadir/applications/hdspmixer.desktop
 %_datadir/pixmaps/hdspmixer.png
 
@@ -616,7 +600,6 @@ EOF
 %defattr(-,root,root)
 %doc rmedigicontrol/COPYING rmedigicontrol/README
 %{_bindir}/rmedigicontrol
-%{_menudir}/rmedigicontrol
 %_datadir/applications/mandriva-rmedigicontrol.desktop
 
 %files -n	sb16-firmware
