@@ -10,8 +10,8 @@
 
 %define tool_fver 1.0.16
 %define firmware_fver 1.0.16
-%define firm_beta rc1
-%define tool_beta rc1
+%define firm_beta 0
+%define tool_beta 0
 %define ld10k1_major 0
 
 %define ld10k1_name lo10k1
@@ -34,7 +34,7 @@ Version:	%tool_fver
 %if %firm_beta
 Release: %mkrel 0.%{firm_beta}.2
 %else
-Release:	%mkrel 2
+Release:	%mkrel 1
 %endif
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 License:	GPL
