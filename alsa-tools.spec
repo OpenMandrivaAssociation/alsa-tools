@@ -34,7 +34,7 @@ Version:	%tool_fver
 %if %firm_beta
 Release: %mkrel 0.%{firm_beta}.2
 %else
-Release:	%mkrel 1
+Release:	%mkrel 2
 %endif
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 License:	GPL
@@ -44,6 +44,8 @@ Source1:	ftp://ftp.alsa-project.org/pub/firmware/%firm_name.tar.bz2
 Source2:	audio_dock_netlist.h
 Patch:		alsa-tools-0.9.8-sscape_ctl.c.patch
 Patch1:		alsa-tools-1.0.11-gtk-buildfix.patch
+# From Debian: adapt to udev instead of hotplug - AdamW 2008/03
+Patch2:		alsa-tools-1.0.16-usx2yloader-udev.patch
 Group:		Sound
 BuildRequires:	libalsa-devel >= %version
 BuildRequires:	fltk-devel
@@ -349,6 +351,7 @@ This is the firmware data for turtlebeach.
 Summary:	Firmware loader for Tascam USX2Y USB
 License:	GPL
 Group:		Sound
+Requires:	fxload
 
 %description -n	usx2yloader
 Helper program to load the firmware binaries onto the Tascam USX2Y USB.
@@ -382,6 +385,7 @@ This is the firmware data for Yamaha DS-1 sound cards.
 %setup -q -a 1 -n %fname
 %patch
 %patch1 -p0 -b .gtk2
+%patch2 -p1 -b .usx2yudev
 cp %SOURCE2 ./%firm_name/emu/audio_dock_netlist.h
 pushd envy24control
 touch NEWS ChangeLog
@@ -422,7 +426,7 @@ Exec=%{_bindir}/echomixer
 Icon=sound_section
 Terminal=false
 Type=Application
-Categories=X-MandrivaLinux-Multimedia-Sound;Audio;
+Categories=AudioVideo;Audio;Mixer;
 EOF
 
 
@@ -435,7 +439,7 @@ Exec=%{_bindir}/envy24control
 Icon=sound_section
 Terminal=false
 Type=Application
-Categories=X-MandrivaLinux-Multimedia-Sound;Audio;
+Categories=AudioVideo;Audio;Mixer;
 EOF
 
 
@@ -449,9 +453,22 @@ Exec=%{_bindir}/rmedigicontrol
 Icon=sound_section
 Terminal=false
 Type=Application
-Categories=X-MandrivaLinux-Multimedia-Sound;Audio;
+Categories=AudioVideo;Audio;Mixer;
 EOF
 
+# udev rules file for usx2yloader - AdamW 2008/03
+mkdir -p %{buildroot}%{_sysconfdir}/udev/rules.d
+cat > %{buildroot}%{_sysconfdir}/udev/rules.d/55-alsa-tascam-firmware-loaders.rules << EOF
+# TASCAM US-428 usb sound card.
+    BUS=="usb", ACTION=="add", SYSFS{idVendor}=="1604", SYSFS{idProduct}=="8000", RUN+="/lib/udev/tascam_fw"
+    BUS=="usb", ACTION=="add", SYSFS{idVendor}=="1604", SYSFS{idProduct}=="8001", RUN+="/lib/udev/tascam_fpga"
+# TASCAM US-224 usb sound card.
+    BUS=="usb", ACTION=="add", SYSFS{idVendor}=="1604", SYSFS{idProduct}=="8004", RUN+="/lib/udev/tascam_fw"
+    BUS=="usb", ACTION=="add", SYSFS{idVendor}=="1604", SYSFS{idProduct}=="8005", RUN+="/lib/udev/tascam_fpga"
+# TASCAM US-112 usb sound card.
+    BUS=="usb", ACTION=="add", SYSFS{idVendor}=="1604", SYSFS{idProduct}=="8006", RUN+="/lib/udev/tascam_fw"
+    BUS=="usb", ACTION=="add", SYSFS{idVendor}=="1604", SYSFS{idProduct}=="8007", RUN+="/lib/udev/tascam_fpga"
+EOF
 
 %post -n	echomixer
 %update_menus
@@ -624,10 +641,11 @@ EOF
 %defattr(-,root,root)
 %doc usx2yloader/README
 %{_bindir}/usx2yloader
-%{_sysconfdir}/hotplug/usb/tascam*
+/lib/udev/tascam*
 %dir %{_datadir}/alsa
 %dir %{_datadir}/alsa/firmware
 %{_datadir}/alsa/firmware/usx2yloader
+%{_sysconfdir}/udev/rules.d/55-alsa-tascam-firmware-loaders.rules
 
 
 %files -n	pcxhrloader
