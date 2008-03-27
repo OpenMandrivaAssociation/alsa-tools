@@ -32,7 +32,7 @@
 Name:		alsa-tools
 Version:	%tool_fver
 %if %firm_beta
-Release: %mkrel 0.%{firm_beta}.2
+Release: %mkrel 0.%{firm_beta}.3
 %else
 Release:	%mkrel 2
 %endif
@@ -113,18 +113,6 @@ Group:		Sound
 This is an assembler for the emu10k1 DSP chip present in the
 creative SB live, PCI 512, and emu APS sound cards. It is used to
 make audio effects such as a flanger, chorus or reverb.
-
-%ifnarch ppc
-%package -n	cspctl
-Summary:	Sound Blaster 16 ASP/CSP control program
-License:	GPL
-Group:		Sound
-
-%description -n	cspctl
-cspctl is a simple CSP microcode loader for Creative Sound Blaster
-16ASP and some Sound Blaster AWE32 sound cards with Creative
-Signal Processor (CSP) chip (CT1748A) installed.
-%endif
 
 %package -n	echomixer
 Summary:	Control tool for Echoaudio soundcards
@@ -274,10 +262,13 @@ Group:		Sound
 %description -n	rmedigicontrol
 Control panel for the RME Hammerfall DSP cards
 
+%ifnarch ppc
 %package -n	sb16_csp
 Summary:	Sound Blaster 16 ASP/CSP control program
 License:	GPL
 Group:		Sound
+Provides:   cspctl
+Obsoletes:   cspctl
 
 %description -n	sb16_csp
 Cspctl is a Sound Blaster 16 ASP/CSP control program. It is a simple CSP
@@ -314,6 +305,7 @@ is no need to preload appropriate *.csp files.
 If hardware codec microcode has been manually loaded, then CSP will support
 only loaded PCM format and autoloading will be disabled.  In such case, proc
 interface will show loaded codec properties:
+%endif
 
 %package -n	sb16-firmware
 Summary:	Firwmare for SB16 Advanced Signal Processor
@@ -541,14 +533,6 @@ EOF
 %_datadir/applications/mandriva-envy24control.desktop
 #%{_iconsdir}/envy24control.png
 
-%ifnarch ppc
-%files -n	cspctl
-%defattr(-,root,root)
-%doc sb16_csp/COPYING sb16_csp/README
-%{_bindir}/cspctl
-%{_mandir}/man1/cspctl.*
-%endif
-
 %files -n	hdspconf
 %defattr(-,root,root)
 %doc hdspconf/COPYING hdspconf/README
@@ -661,7 +645,7 @@ EOF
 %ifnarch ppc
 %files -n	sb16_csp
 %defattr(-,root,root)
-%doc sb16_csp/README
+%doc sb16_csp/COPYING sb16_csp/README
 %_bindir/cspctl
 %_mandir/man1/cspctl.*
 %endif
