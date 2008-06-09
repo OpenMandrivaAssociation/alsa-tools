@@ -483,8 +483,12 @@ EOF
 %clean_menus
 
 
+%if %mdkversion < 200900
 %post -n %ld10k1_libname -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %ld10k1_libname -p /sbin/ldconfig
+%endif
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
