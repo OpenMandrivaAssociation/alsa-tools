@@ -1,3 +1,5 @@
+# WE SHOULD SPLIT alsa-firmware from alsa-tools
+
 # sb16_csp is added conditionally!
 %define MODULES_NOCSPCTL ac3dec as10k1 echomixer envy24control hdspconf hdsploader hdspmixer ld10k1 mixartloader pcxhrloader rmedigicontrol seq/sbiload sscape_ctl us428control usx2yloader vxloader
 # qlo10k1 needs l10k1 and thus this package will only bootstrap if it's installed first
@@ -8,10 +10,10 @@
 %define MODULES %{MODULES_NOCSPCTL} sb16_csp
 %endif
 
-%define tool_fver 1.0.16
-%define firmware_fver 1.0.16
-%define firm_beta 0
-%define tool_beta 0
+%define tool_fver 1.0.17
+%define firmware_fver 1.0.17
+%define firm_beta rc1
+%define tool_beta rc1
 %define ld10k1_major 0
 
 %define ld10k1_name lo10k1
@@ -34,7 +36,7 @@ Version:	%tool_fver
 %if %firm_beta
 Release: %mkrel 0.%{firm_beta}.1
 %else
-Release:	%mkrel 3
+Release:	%mkrel 1
 %endif
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 License:	GPL
