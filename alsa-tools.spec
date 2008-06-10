@@ -48,6 +48,8 @@ Patch:		alsa-tools-0.9.8-sscape_ctl.c.patch
 Patch1:		alsa-tools-1.0.11-gtk-buildfix.patch
 # From Debian: adapt to udev instead of hotplug - AdamW 2008/03
 Patch2:		alsa-tools-1.0.16-usx2yloader-udev.patch
+# (tv) fix underlinking:
+Patch3:		alsa-tools-1.0.17rc1-fix-link.patch
 Group:		Sound
 BuildRequires:	libalsa-devel >= %version
 BuildRequires:	fltk-devel
@@ -380,6 +382,7 @@ This is the firmware data for Yamaha DS-1 sound cards.
 %patch
 %patch1 -p0 -b .gtk2
 %patch2 -p1 -b .usx2yudev
+%patch3 -p1 -b .link
 cp %SOURCE2 ./%firm_name/emu/audio_dock_netlist.h
 pushd envy24control
 touch NEWS ChangeLog
