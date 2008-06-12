@@ -467,25 +467,41 @@ cat > %{buildroot}%{_sysconfdir}/udev/rules.d/55-alsa-tascam-firmware-loaders.ru
     BUS=="usb", ACTION=="add", SYSFS{idVendor}=="1604", SYSFS{idProduct}=="8007", RUN+="/lib/udev/tascam_fpga"
 EOF
 
+%if %mdkversion < 200900
 %post -n	echomixer
 %update_menus
+%endif
+%if %mdkversion < 200900
 %postun -n	echomixer
 %clean_menus
+%endif
 
+%if %mdkversion < 200900
 %post -n	envy24control
 %update_menus
+%endif
+%if %mdkversion < 200900
 %postun -n	envy24control
 %clean_menus
+%endif
 
+%if %mdkversion < 200900
 %post -n	hdspmixer
 %update_menus
+%endif
+%if %mdkversion < 200900
 %postun -n	hdspmixer
 %clean_menus
+%endif
 
+%if %mdkversion < 200900
 %post -n	rmedigicontrol
 %update_menus
+%endif
+%if %mdkversion < 200900
 %postun -n	rmedigicontrol
 %clean_menus
+%endif
 
 
 %if %mdkversion < 200900
