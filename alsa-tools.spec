@@ -44,7 +44,7 @@ URL:		http://alsa-project.org
 Source0:	ftp://ftp.alsa-project.org/pub/tools/%fname.tar.bz2
 Source1:	ftp://ftp.alsa-project.org/pub/firmware/%firm_name.tar.bz2
 Source2:	audio_dock_netlist.h
-Patch:		alsa-tools-0.9.8-sscape_ctl.c.patch
+Patch:		alsa-tools-1.0.18-sscape_ctl.c.patch
 Patch1:		alsa-tools-1.0.11-gtk-buildfix.patch
 # From Debian: adapt to udev instead of hotplug - AdamW 2008/03
 Patch2:		alsa-tools-1.0.16-usx2yloader-udev.patch
