@@ -50,6 +50,8 @@ Patch1:		alsa-tools-1.0.11-gtk-buildfix.patch
 Patch2:		alsa-tools-1.0.16-usx2yloader-udev.patch
 # (tv) fix underlinking:
 Patch3:		alsa-tools-1.0.17rc1-fix-link.patch
+# (hk) fix build errors with -Wformat -Werror=format-security
+Patch4:		alsa-tools-1.0.19-format-security.patch
 Group:		Sound
 BuildRequires:	libalsa-devel >= %version
 BuildRequires:	fltk-devel
@@ -383,6 +385,7 @@ This is the firmware data for Yamaha DS-1 sound cards.
 %patch1 -p0 -b .gtk2
 %patch2 -p1 -b .usx2yudev
 %patch3 -p1 -b .link
+%patch4 -p1 -b .format-security
 cp %SOURCE2 ./%firm_name/emu/audio_dock_netlist.h
 pushd envy24control
 touch NEWS ChangeLog
@@ -392,6 +395,7 @@ popd
 for i in %{MODULES} %firm_name; do
 pushd ${i}
 # (tv) force it not to lookup aclocal-1.9 & co
+libtoolize -c -f
 autoreconf
 %configure2_5x --with-hotplug-dir=/lib/firmware
 %make
