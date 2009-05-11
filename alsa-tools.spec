@@ -10,8 +10,8 @@
 %define MODULES %{MODULES_NOCSPCTL} sb16_csp
 %endif
 
-%define tool_fver 1.0.19
-%define firmware_fver 1.0.19
+%define tool_fver 1.0.20
+%define firmware_fver 1.0.20
 %define firm_beta 0
 %define tool_beta 0
 %define ld10k1_major 0
@@ -36,7 +36,7 @@ Version:	%tool_fver
 %if %firm_beta
 Release: %mkrel 0.%{firm_beta}.1
 %else
-Release:	%mkrel 2
+Release:	%mkrel 3
 %endif
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 License:	GPL
