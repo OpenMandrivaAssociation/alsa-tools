@@ -4,7 +4,7 @@
 %define MODULES_NOCSPCTL ac3dec as10k1 echomixer envy24control hdspconf hdsploader hdspmixer ld10k1 mixartloader pcxhrloader rmedigicontrol seq/sbiload sscape_ctl us428control usx2yloader vxloader
 # qlo10k1 needs l10k1 and thus this package will only bootstrap if it's installed first
 
-%ifarch ppc
+%ifarch ppc %mips %arm
 %define MODULES %{MODULES_NOCSPCTL}
 %else
 %define MODULES %{MODULES_NOCSPCTL} sb16_csp
@@ -36,7 +36,7 @@ Version:	%tool_fver
 %if %firm_beta
 Release: %mkrel 0.%{firm_beta}.1
 %else
-Release:	%mkrel 3
+Release:	%mkrel 4
 %endif
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 License:	GPL
@@ -268,7 +268,7 @@ Group:		Sound
 %description -n	rmedigicontrol
 Control panel for the RME Hammerfall DSP cards
 
-%ifnarch ppc
+%ifnarch ppc %mips %arm
 %package -n	sb16_csp
 Summary:	Sound Blaster 16 ASP/CSP control program
 License:	GPL
@@ -671,7 +671,7 @@ EOF
 %{_datadir}/alsa/firmware/pcxhrloader
 /lib/firmware/pcxhr/
 
-%ifnarch ppc
+%ifnarch ppc %mips %arm
 %files -n	sb16_csp
 %defattr(-,root,root)
 %doc sb16_csp/COPYING sb16_csp/README
