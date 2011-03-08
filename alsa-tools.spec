@@ -44,7 +44,7 @@ URL:		http://alsa-project.org
 Source0:	ftp://ftp.alsa-project.org/pub/tools/%fname.tar.bz2
 Source1:	ftp://ftp.alsa-project.org/pub/firmware/%firm_name.tar.bz2
 Source2:	audio_dock_netlist.h
-Patch:		alsa-tools-1.0.18-sscape_ctl.c.patch
+Patch0:		alsa-tools-1.0.18-sscape_ctl.c.patch
 Patch1:		alsa-tools-1.0.11-gtk-buildfix.patch
 # From Debian: adapt to udev instead of hotplug - AdamW 2008/03
 Patch2:		alsa-tools-1.0.16-usx2yloader-udev.patch
@@ -381,7 +381,7 @@ This is the firmware data for Yamaha DS-1 sound cards.
 
 %prep
 %setup -q -a 1 -n %fname
-%patch
+%patch0 -p0
 %patch1 -p0 -b .gtk2
 %patch2 -p1 -b .usx2yudev
 %patch3 -p1 -b .link
@@ -578,6 +578,7 @@ EOF
 %{_datadir}/alsa/firmware/hdsploader
 /lib/firmware/digiface_*
 /lib/firmware/multiface_*
+/lib/firmware/rpm_firmware.bin
 
 
 %files -n	hdspmixer
