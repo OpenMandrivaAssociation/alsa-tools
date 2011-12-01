@@ -418,8 +418,8 @@ install -m755 ac3dec/test/imdct_test %{buildroot}%{_bindir}/imdct_test
 # install menu entries
 
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-echomixer.desktop << EOF
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-echomixer.desktop << EOF
 [Desktop Entry]
 Name=Echo mixer
 Comment=Control tool for Echoaudio soundcards
@@ -431,8 +431,8 @@ Categories=AudioVideo;Audio;Mixer;
 EOF
 
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-envy24control.desktop << EOF
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-envy24control.desktop << EOF
 [Desktop Entry]
 Name=Envy24control
 Comment=Control tool for Envy24 (ice1712) based soundcards
@@ -445,8 +445,8 @@ EOF
 
 
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-rmedigicontrol.desktop << EOF
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-rmedigicontrol.desktop << EOF
 [Desktop Entry]
 Name=RME Digicontrol
 Comment=Control panel for RME Hammerfall
