@@ -34,9 +34,9 @@
 Name:		alsa-tools
 Version:	%tool_fver
 %if %firm_beta
-Release: %mkrel 0.%{firm_beta}.3
+Release:	0.%{firm_beta}.3
 %else
-Release:	%mkrel 2
+Release:	3
 %endif
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 License:	GPL
@@ -58,7 +58,6 @@ BuildRequires:	fltk-devel
 BuildRequires:	gtk2-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	automake
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 Advanced Linux Sound Architecture (ALSA) utils. Modularized 
@@ -227,7 +226,7 @@ This is the library of ld10k1.
 %package -n %{ld10k1_libname}-devel
 Summary:    Development files for l10k1
 Group:      Development/C
-Requires:   %{ld10k1_libname} = %version
+Requires:   %{ld10k1_libname} >= %version
 Provides:   %{ld10k1_libname_orig}-devel = %version-%release
 Obsoletes:  %{ld10k1_libname_orig}-devel
 
@@ -471,55 +470,8 @@ cat > %{buildroot}%{_sysconfdir}/udev/rules.d/55-alsa-tascam-firmware-loaders.ru
     BUS=="usb", ACTION=="add", SYSFS{idVendor}=="1604", SYSFS{idProduct}=="8007", RUN+="/lib/udev/tascam_fpga"
 EOF
 
-%if %mdkversion < 200900
-%post -n	echomixer
-%update_menus
-%endif
-%if %mdkversion < 200900
-%postun -n	echomixer
-%clean_menus
-%endif
-
-%if %mdkversion < 200900
-%post -n	envy24control
-%update_menus
-%endif
-%if %mdkversion < 200900
-%postun -n	envy24control
-%clean_menus
-%endif
-
-%if %mdkversion < 200900
-%post -n	hdspmixer
-%update_menus
-%endif
-%if %mdkversion < 200900
-%postun -n	hdspmixer
-%clean_menus
-%endif
-
-%if %mdkversion < 200900
-%post -n	rmedigicontrol
-%update_menus
-%endif
-%if %mdkversion < 200900
-%postun -n	rmedigicontrol
-%clean_menus
-%endif
-
-
-%if %mdkversion < 200900
-%post -n %ld10k1_libname -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %ld10k1_libname -p /sbin/ldconfig
-%endif
-
-%clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 %files -n	ac3dec
-%defattr(-,root,root)
 %doc ac3dec/COPYING ac3dec/README ac3dec/TODO
 %{_bindir}/ac3dec
 %{_bindir}/extract_ac3
@@ -527,35 +479,28 @@ EOF
 %{_bindir}/imdct_test
 
 %files -n	aica-firmware
-%defattr(-,root,root)
 /lib/firmware/aica_firmware.bin
 
 %files -n	asihpi-firmware
-%defattr(-,root,root)
 /lib/firmware/asihpi
 
 %files -n	as10k1
-%defattr(-,root,root)
 %doc as10k1/README as10k1/COPYING as10k1/examples
 %{_bindir}/as10k1
 
 %files -n	echomixer
-%defattr(-,root,root)
 %doc echomixer/AUTHORS echomixer/COPYING echomixer/README
 %{_bindir}/echomixer
 %_datadir/applications/mandriva-echomixer.desktop
 /lib/firmware/ea
 
 %files -n	emagic-firmware
-%defattr(-,root,root)
 /lib/firmware/emagic/
 
 %files -n	emu1010-firmware
-%defattr(-,root,root)
 /lib/firmware/emu/
 
 %files -n	envy24control
-%defattr(-,root,root)
 %doc envy24control/AUTHORS envy24control/COPYING envy24control/README
 %{_bindir}/envy24control
 %{_mandir}/man1/envy24control.1*
@@ -563,14 +508,12 @@ EOF
 #%{_iconsdir}/envy24control.png
 
 %files -n	hdspconf
-%defattr(-,root,root)
 %doc hdspconf/COPYING hdspconf/README
 %_bindir/hdspconf
 %_datadir/pixmaps/hdspconf.png
 %_datadir/applications/hdspconf.desktop
 
 %files -n	hdsploader
-%defattr(-,root,root)
 %doc hdsploader/AUTHORS hdsploader/COPYING hdsploader/README
 %{_bindir}/hdsploader
 %dir %{_datadir}/alsa
@@ -580,20 +523,16 @@ EOF
 /lib/firmware/multiface_*
 /lib/firmware/rpm_firmware.bin
 
-
 %files -n	hdspmixer
-%defattr(-,root,root)
 %doc hdspmixer/AUTHORS hdspmixer/COPYING hdspmixer/README
 %{_bindir}/hdspmixer
 %_datadir/applications/hdspmixer.desktop
 %_datadir/pixmaps/hdspmixer.png
 
 %files -n	korg1212-firmware
-%defattr(-,root,root)
 /lib/firmware/korg/k1212.dsp
 
 %files -n	ld10k1
-%defattr(-,root,root)
 %doc as10k1/README as10k1/COPYING as10k1/examples
 %_bindir/lo10k1
 %_bindir/init_audigy
@@ -605,22 +544,18 @@ EOF
 %_sbindir/ld10k1d
 
 %files -n %ld10k1_libname
-%defattr(-, root, root)
 %_libdir/lib%{ld10k1_name}.so.*
 
 %files -n %{ld10k1_libname}-devel
-%defattr(-,root,root)
 %_includedir/lo10k1
 %_datadir/aclocal/ld10k1.m4
 %_libdir/lib%{ld10k1_name}.so
 %_libdir/lib%{ld10k1_name}.la
 
 %files -n	maestro3-firmware
-%defattr(-,root,root)
 /lib/firmware/ess
 
 %files -n	mixartloader
-%defattr(-,root,root)
 %{_bindir}/mixartloader
 %dir %{_datadir}/alsa
 %dir %{_datadir}/alsa/firmware
@@ -628,31 +563,25 @@ EOF
 /lib/firmware/mixart/
 
 %files -n	rmedigicontrol
-%defattr(-,root,root)
 %doc rmedigicontrol/COPYING rmedigicontrol/README
 %{_bindir}/rmedigicontrol
 %_datadir/applications/mandriva-rmedigicontrol.desktop
 
 %files -n	sb16-firmware
-%defattr(-,root,root)
 /lib/firmware/sb16/
 
 %files -n	sbiload
-%defattr(-,root,root)
 %doc seq/sbiload/COPYING seq/sbiload/README
 %{_bindir}/sbiload
 %{_datadir}/sounds/opl3/
 
 %files -n	sscape_ctl
-%defattr(-,root,root)
 %{_bindir}/sscape_ctl
 
 %files -n	us428control
-%defattr(-,root,root)
 %{_bindir}/us428control
 
 %files -n	usx2yloader
-%defattr(-,root,root)
 %doc usx2yloader/README
 %{_bindir}/usx2yloader
 /lib/udev/tascam*
@@ -661,9 +590,7 @@ EOF
 %{_datadir}/alsa/firmware/usx2yloader
 %{_sysconfdir}/udev/rules.d/55-alsa-tascam-firmware-loaders.rules
 
-
 %files -n	pcxhrloader
-%defattr(-,root,root)
 %doc vxloader/README
 %{_bindir}/pcxhrloader
 %dir %{_datadir}/alsa/firmware
@@ -674,21 +601,18 @@ EOF
 
 %ifnarch ppc %mips %arm
 %files -n	sb16_csp
-%defattr(-,root,root)
 %doc sb16_csp/COPYING sb16_csp/README
 %_bindir/cspctl
 %_mandir/man1/cspctl.*
 %endif
 
 %files -n	turtlebeach-firmware
-%defattr(-,root,root)
 /lib/firmware/turtlebeach/msndinit.bin
 /lib/firmware/turtlebeach/msndperm.bin
 /lib/firmware/turtlebeach/pndsperm.bin
 /lib/firmware/turtlebeach/pndspini.bin
 
 %files -n	vxloader
-%defattr(-,root,root)
 %doc vxloader/README
 %{_bindir}/vxloader
 %dir %{_datadir}/alsa
@@ -697,11 +621,7 @@ EOF
 /lib/firmware/vx/
 
 %files -n	yamaha-firmware
-%defattr(-,root,root)
 /lib/firmware/yamaha/ds1_ctrl.fw
 /lib/firmware/yamaha/ds1_dsp.fw
 /lib/firmware/yamaha/ds1e_ctrl.fw
 /lib/firmware/yamaha/yss225_registers.bin
-
-
-
