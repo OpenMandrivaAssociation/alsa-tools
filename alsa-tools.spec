@@ -10,8 +10,8 @@
 %define MODULES %{MODULES_NOCSPCTL} sb16_csp
 %endif
 
-%define tool_fver 1.0.24.1
-%define firmware_fver 1.0.24.1
+%define tool_fver 1.0.25
+%define firmware_fver 1.0.25
 %define firm_beta 0
 %define tool_beta 0
 %define ld10k1_major 0
@@ -34,9 +34,9 @@
 Name:		alsa-tools
 Version:	%tool_fver
 %if %firm_beta
-Release:	0.%{firm_beta}.3
+Release:	0.%{firm_beta}.1
 %else
-Release:	3
+Release:	1
 %endif
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 License:	GPL
@@ -45,7 +45,6 @@ Source0:	ftp://ftp.alsa-project.org/pub/tools/%fname.tar.bz2
 Source1:	ftp://ftp.alsa-project.org/pub/firmware/%firm_name.tar.bz2
 Source2:	audio_dock_netlist.h
 Patch0:		alsa-tools-1.0.18-sscape_ctl.c.patch
-Patch1:		alsa-tools-1.0.11-gtk-buildfix.patch
 # From Debian: adapt to udev instead of hotplug - AdamW 2008/03
 Patch2:		alsa-tools-1.0.16-usx2yloader-udev.patch
 # (tv) fix underlinking:
@@ -381,7 +380,6 @@ This is the firmware data for Yamaha DS-1 sound cards.
 %prep
 %setup -q -a 1 -n %fname
 %patch0 -p0
-%patch1 -p0 -b .gtk2
 %patch2 -p1 -b .usx2yudev
 %patch3 -p1 -b .link
 %patch4 -p1 -b .format-security
@@ -550,7 +548,6 @@ EOF
 %_includedir/lo10k1
 %_datadir/aclocal/ld10k1.m4
 %_libdir/lib%{ld10k1_name}.so
-%_libdir/lib%{ld10k1_name}.la
 
 %files -n	maestro3-firmware
 /lib/firmware/ess
@@ -593,7 +590,6 @@ EOF
 %files -n	pcxhrloader
 %doc vxloader/README
 %{_bindir}/pcxhrloader
-%dir %{_datadir}/alsa/firmware
 %dir %{_datadir}/alsa
 %dir %{_datadir}/alsa/firmware
 %{_datadir}/alsa/firmware/pcxhrloader
