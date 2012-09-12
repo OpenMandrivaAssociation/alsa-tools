@@ -10,7 +10,7 @@
 %define MODULES %{MODULES_NOCSPCTL} sb16_csp
 %endif
 
-%define tool_fver 1.0.25
+%define tool_fver 1.0.26
 %define firmware_fver 1.0.25
 %define firm_beta 0
 %define tool_beta 0
