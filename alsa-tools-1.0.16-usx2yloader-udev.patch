@@ -1,0 +1,26 @@
+--- alsa-tools-1.0.14~/usx2yloader/Makefile.am	2007-06-04 13:27:26.000000000 +0200
++++ alsa-tools-1.0.14/usx2yloader/Makefile.am	2007-09-12 18:18:24.000000000 +0200
+@@ -11,8 +11,8 @@ usx2yloader_SOURCES = usx2yloader.c
+ 
+ EXTRA_DIST = gitcompile depcomp tascam_fw.usermap tascam_fw.in tascam_fpga.in
+ 
+-hotplug_files = tascam_fw.usermap tascam_fw tascam_fpga
+-hotplugdir = /etc/hotplug/usb
++hotplug_files = tascam_fw tascam_fpga
++hotplugdir = /lib/udev
+ hotplug_SCRIPTS = $(hotplug_files)
+ 
+ 
+diff -urd alsa-tools-1.0.14~/usx2yloader/Makefile.in alsa-tools-1.0.14/usx2yloader/Makefile.in
+--- alsa-tools-1.0.14~/usx2yloader/Makefile.in	2007-06-04 13:29:06.000000000 +0200
++++ alsa-tools-1.0.14/usx2yloader/Makefile.in	2007-09-12 18:17:58.000000000 +0200
+@@ -167,7 +167,8 @@ AM_CFLAGS = -DDATAPATH=\"$(datadir)/alsa
+ usx2yloader_SOURCES = usx2yloader.c
+ EXTRA_DIST = gitcompile depcomp tascam_fw.usermap tascam_fw.in tascam_fpga.in
+ hotplug_files = tascam_fw.usermap tascam_fw tascam_fpga
+-hotplugdir = /etc/hotplug/usb
++hotplug_files = tascam_fw tascam_fpga
++hotplugdir = /lib/udev
+ hotplug_SCRIPTS = $(hotplug_files)
+ all: all-am
+ 
