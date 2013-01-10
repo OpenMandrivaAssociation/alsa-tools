@@ -10,7 +10,7 @@
 %define MODULES %{MODULES_NOCSPCTL} sb16_csp
 %endif
 
-%define tool_fver 1.0.25
+%define tool_fver 1.0.26.1
 %define firmware_fver 1.0.25
 %define firm_beta 0
 %define tool_beta 0
@@ -36,7 +36,7 @@ Version:	%{tool_fver}
 %if %{firm_beta}
 Release:	0.%{firm_beta}.1
 %else
-Release:	3
+Release:	1
 %endif
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 License:	GPL
@@ -401,7 +401,6 @@ popd
 done
 
 %install
-rm -rf %{buildroot}
 
 for i in %{MODULES} %firm_name; do
 pushd ${i}
