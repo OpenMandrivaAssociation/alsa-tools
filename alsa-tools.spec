@@ -47,6 +47,7 @@ Source1:	ftp://ftp.alsa-project.org/pub/firmware/%firm_name.tar.bz2
 Source2:	audio_dock_netlist.h
 Source10:	%{name}.rpmlintrc
 Patch0:		alsa-tools-1.0.18-sscape_ctl.c.patch
+Patch1:		alsa-tools-1.0.26.1-automake-1.13.patch
 # From Debian: adapt to udev instead of hotplug - AdamW 2008/03
 Patch2:		alsa-tools-1.0.16-usx2yloader-udev.patch
 # (tv) fix underlinking:
@@ -381,6 +382,7 @@ This is the firmware data for Yamaha DS-1 sound cards.
 %prep
 %setup -q -a 1 -n %fname
 %patch0 -p0
+%patch1 -p1 -b .am113~
 %patch2 -p1 -b .usx2yudev
 %patch3 -p1 -b .link
 %patch4 -p1 -b .format-security
