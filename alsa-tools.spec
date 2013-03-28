@@ -396,7 +396,7 @@ for i in %{MODULES} %firm_name; do
 pushd ${i}
 # (tv) force it not to lookup aclocal-1.9 & co
 libtoolize -c -f
-autoreconf
+autoreconf -fi
 %configure2_5x --with-hotplug-dir=/lib/firmware
 %make
 popd
