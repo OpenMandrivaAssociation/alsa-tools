@@ -1,5 +1,5 @@
---- sscape_ctl/sscape_ctl.c.orig	2008-10-29 13:42:12.000000000 +0100
-+++ sscape_ctl/sscape_ctl.c	2008-12-14 09:42:49.000000000 +0100
+--- ./sscape_ctl/sscape_ctl.c.orig	2008-10-29 13:42:12.000000000 +0100
++++ ./sscape_ctl/sscape_ctl.c	2008-12-14 09:42:49.000000000 +0100
 @@ -34,7 +34,7 @@
  
  const char default_dir[] = "/sndscape";

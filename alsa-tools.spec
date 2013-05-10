@@ -1,38 +1,26 @@
 # sb16_csp is added conditionally!
 %define MODULES_NOCSPCTL as10k1 echomixer envy24control hdspconf hdsploader hdspmixer ld10k1 mixartloader pcxhrloader rmedigicontrol seq/sbiload sscape_ctl us428control usx2yloader vxloader
 # qlo10k1 needs l10k1 and thus this package will only bootstrap if it's installed first
+%define EXTRAS	hdajackretask hda-verb hwmixvolume 
 
 %ifarch ppc %mips %arm
 %define MODULES %{MODULES_NOCSPCTL}
 %else
-%define MODULES %{MODULES_NOCSPCTL} sb16_csp
+%define MODULES %{MODULES_NOCSPCTL} sb16_csp %{EXTRAS}
 %endif
 
-%define tool_fver 1.0.27
-%define tool_beta 0
-%define ld10k1_major 0
+%define major	0
+%define libname %mklibname lo10k1_%{major}
+%define devname %mklibname lo10k1 -d
 
-%define ld10k1_name lo10k1
-%define ld10k1_libname_orig lib%ld10k1_name
-%define ld10k1_libname %mklibname %ld10k1_name %ld10k1_major
-
-%if %tool_beta
-%define fname	%name-%tool_fver%tool_beta
-%else
-%define fname	%name-%tool_fver
-%endif
-
-Name:		alsa-tools
-Version:	%tool_fver
-%if %tool_beta
-Release:	%mkrel 0.%{tool_beta}.1
-%else
-Release:	1
-%endif
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
+Name:		alsa-tools
+Version:	1.0.27
+Release:	2
 License:	GPLv2+
-URL:		http://alsa-project.org
-Source0:	ftp://ftp.alsa-project.org/pub/tools/%{fname}.tar.bz2
+Group:		Sound
+Url:		http://alsa-project.org
+Source0:	ftp://ftp.alsa-project.org/pub/tools/%{name}-%{version}.tar.bz2
 Source1:	90-alsa-tools-firmware.rules
 Patch1:		alsa-tools-1.0.18-sscape_ctl.c.patch
 # From Debian: adapt to udev instead of hotplug - AdamW 2008/03
@@ -41,35 +29,25 @@ Patch2:		alsa-tools-1.0.16-usx2yloader-udev.patch
 Patch3:		alsa-tools-1.0.17rc1-fix-link.patch
 # (hk) fix build errors with -Wformat -Werror=format-security
 Patch4:		alsa-tools-1.0.19-format-security.patch
-Group:		Sound
-BuildRequires:	libalsa-devel >= %{version}
-BuildRequires:	fltk-devel
-BuildRequires:	gtk2-devel
-BuildRequires:	ncurses-devel
-BuildRequires:	automake
-BuildRequires:	desktop-file-utils
 
-Provides:	envy24control = %{version}-%{release}
-Provides:	hdspconf = %{version}-%{release}
-Provides:	hdspmixer = %{version}-%{release}
-Provides:	rmedigicontrol = %{version}-%{release}
-Provides:	sb16_csp = %{version}-%{release}
-Provides:	sbiload = %{version}-%{release}
-Provides:	sscape_ctl = %{version}-%{release}
-Provides:	us428control = %{version}-%{release}
-Provides:	as10k1 = %{version}-%{release}
-Provides:	echomixer = %{version}-%{release}
-Obsoletes:	ac3dec < %{version}-%{release}
-Obsoletes:	envy24control < %{version}-%{release}
-Obsoletes:	hdspconf < %{version}-%{release}
-Obsoletes:	hdspmixer < %{version}-%{release}
-Obsoletes:	rmedigicontrol < %{version}-%{release}
-Obsoletes:	sb16_csp < %{version}-%{release}
-Obsoletes:	sbiload < %{version}-%{release}
-Obsoletes:	sscape_ctl < %{version}-%{release}
-Obsoletes:	us428control < %{version}-%{release}
-Obsoletes:	as10k1 < %{version}-%{release}
-Obsoletes:	echomixer < %{version}-%{release}
+BuildRequires:	desktop-file-utils
+BuildRequires:	fltk-devel
+BuildRequires:	pkgconfig(alsa)
+BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(gtk+-3.0)
+BuildRequires:	pkgconfig(ncurses)
+
+%rename		envy24control = %{version}-%{release}
+%rename		hdspconf = %{version}-%{release}
+%rename		hdspmixer = %{version}-%{release}
+%rename		rmedigicontrol = %{version}-%{release}
+%rename		sb16_csp = %{version}-%{release}
+%rename		sbiload = %{version}-%{release}
+%rename		sscape_ctl = %{version}-%{release}
+%rename		us428control = %{version}-%{release}
+%rename		as10k1 = %{version}-%{release}
+%rename		echomixer = %{version}-%{release}
+Obsoletes:	ac3dec < 1.0.27-1
 
 %description
 Advanced Linux Sound Architecture (ALSA) utils. Modularized 
@@ -92,16 +70,11 @@ Summary:	ALSA tools for uploading firmware to some sound cards
 License:	GPLv1
 Group:		System/Kernel and hardware
 Requires:	alsa-firmware >= 1.0.25
-Provides:	hdsploader = %{version}-%{release}
-Provides:	mixartloader = %{version}-%{release}
-Provides:	pcxhrloader = %{version}-%{release}
-Provides:	usx2yloader = %{version}-%{release}
-Provides:	vxloader = %{version}-%{release}
-Obsoletes:	hdsploader < %{version}-%{release}
-Obsoletes:	mixartloader < %{version}-%{release}
-Obsoletes:	pcxhrloader < %{version}-%{release}
-Obsoletes:	usx2yloader < %{version}-%{release}
-Obsoletes:	vxloader < %{version}-%{release}
+%rename		hdsploader = %{version}-%{release}
+%rename		mixartloader = %{version}-%{release}
+%rename		pcxhrloader = %{version}-%{release}
+%rename		usx2yloader = %{version}-%{release}
+%rename		vxloader = %{version}-%{release}
 
 %description	firmware
 This package contains tools for flashing firmware into certain sound cards.
@@ -139,33 +112,28 @@ With this you will have exactly same mixer as with original driver (+headphone
 control, not tested AudigyDrive inputs and outputs, AC3 passthrought).
 Use as10k1 compiler from alsa-tools package to compile patches.
 
-%package -n %ld10k1_libname
+%package -n %{libname}
 Summary:	Ld10k1_ library
 Group:		System/Libraries
-Provides:	%ld10k1_libname_orig = %{version}-%{release}
-Obsoletes:	%ld10k1_libname_orig < %{version}-%{release}
-Conflicts:	ld10k1 < 1.0.12
+Obsoletes:	%{_lib}lo10k10 < 1.0.27-2
 
-%description -n %ld10k1_libname
+%description -n %{libname}
 This is the library of ld10k1.
 
-%package -n %{ld10k1_libname}-devel
+%package -n %{devname}
 Summary:	Development files for l10k1
 Group:		Development/C
-Requires:	%{ld10k1_libname} = %version
-Provides:	%{ld10k1_libname_orig}-devel = %{version}-%{release}
-Obsoletes:	%{ld10k1_libname_orig}-devel < %{version}-%{release}
+Requires:	%{libname} = %{version}
+Obsoletes:	%{_lib}lo10k10-devel < 1.0.27-2
 
-%description -n %{ld10k1_libname}-devel
+%description -n %{devname}
 This package contains files needed in order to develop an application
 that made use of the ld10k1 library.
 
 %prep
-%setup -q -n %fname
-%patch1
-%patch2 -p1 -b .usx2yudev
-%patch3 -p1 -b .link
-%patch4 -p1 -b .format-security
+%setup -q
+%apply_patches
+
 pushd envy24control
 touch NEWS ChangeLog
 popd
@@ -173,7 +141,6 @@ popd
 %build
 for i in %{MODULES}; do
 pushd ${i}
-# (tv) force it not to lookup aclocal-1.9 & co
 libtoolize -c -f
 autoreconf
 %configure2_5x
@@ -182,7 +149,6 @@ popd
 done
 
 %install
-
 for i in %{MODULES}; do
 pushd ${i}
   %makeinstall_std
@@ -190,9 +156,8 @@ popd
 done
 
 # install menu entries
-
 mkdir -p %{buildroot}%{_datadir}/applications
-cat > %{buildroot}%{_datadir}/applications/mageia-echomixer.desktop << EOF
+cat > %{buildroot}%{_datadir}/applications/echomixer.desktop << EOF
 [Desktop Entry]
 Name=Echo mixer
 Comment=Control tool for Echoaudio sound cards
@@ -203,9 +168,8 @@ Type=Application
 Categories=AudioVideo;Audio;Mixer;
 EOF
 
-
 mkdir -p %{buildroot}%{_datadir}/applications
-cat > %{buildroot}%{_datadir}/applications/mageia-envy24control.desktop << EOF
+cat > %{buildroot}%{_datadir}/applications/envy24control.desktop << EOF
 [Desktop Entry]
 Name=Envy24control
 Comment=Control tool for Envy24 (ice1712) based sound cards
@@ -216,9 +180,8 @@ Type=Application
 Categories=AudioVideo;Audio;Mixer;
 EOF
 
-
 mkdir -p %{buildroot}%{_datadir}/applications
-cat > %{buildroot}%{_datadir}/applications/mageia-rmedigicontrol.desktop << EOF
+cat > %{buildroot}%{_datadir}/applications/rmedigicontrol.desktop << EOF
 [Desktop Entry]
 Name=RME Digicontrol
 Comment=Control panel for RME Hammerfall
@@ -237,8 +200,8 @@ desktop-file-install \
 	--remove-key="Encoding" \
 	--remove-key="FilePattern" \
 	--remove-category="Application" \
-	--dir=%{buildroot}%{_datadir}/applications/ %{buildroot}%{_datadir}/applications/*
-
+	--dir=%{buildroot}%{_datadir}/applications/ \
+	%{buildroot}%{_datadir}/applications/*
 
 # Fix udev dir
 mkdir -p %{buildroot}%{_prefix}/lib/
@@ -265,20 +228,23 @@ install -p -m 0644 %{SOURCE1} %{buildroot}%{_udevrulesdir}
 %{_bindir}/sbiload
 %{_bindir}/sscape_ctl
 %{_bindir}/us428control
-%_datadir/applications/hdspmixer.desktop
+%{_bindir}/hda-verb
+%{_bindir}/hdajackretask
+%{_bindir}/hwmixvolume
+%{_datadir}/applications/hdspmixer.desktop
 %{_datadir}/applications/hdspconf.desktop
-%{_datadir}/applications/mageia-echomixer.desktop
-%{_datadir}/applications/mageia-envy24control.desktop
-%_datadir/applications/mageia-rmedigicontrol.desktop
+%{_datadir}/applications/echomixer.desktop
+%{_datadir}/applications/envy24control.desktop
+%{_datadir}/applications/rmedigicontrol.desktop
 %{_datadir}/sounds/opl3/
-%{_mandir}/man1/envy24control.1*
 %{_datadir}/pixmaps/hdspconf.png
-%_datadir/pixmaps/hdspmixer.png
+%{_datadir}/pixmaps/hdspmixer.png
+%{_mandir}/man1/envy24control.1*
 
 %ifnarch ppc %mips %arm
 %doc sb16_csp/COPYING sb16_csp/README
-%_bindir/cspctl
-%_mandir/man1/cspctl.*
+%{_bindir}/cspctl
+%{_mandir}/man1/cspctl.*
 %endif
 
 %files firmware
@@ -296,19 +262,20 @@ install -p -m 0644 %{SOURCE1} %{buildroot}%{_udevrulesdir}
 
 %files -n ld10k1
 %doc as10k1/README as10k1/COPYING as10k1/examples
-%_bindir/lo10k1
-%_bindir/init_audigy
-%_bindir/init_audigy_eq10
-%_bindir/init_live
-%_datadir/ld10k1
-%_sbindir/ld10k1
-%_sbindir/dl10k1
-%_sbindir/ld10k1d
+%{_bindir}/lo10k1
+%{_bindir}/init_audigy
+%{_bindir}/init_audigy_eq10
+%{_bindir}/init_live
+%{_datadir}/ld10k1
+%{_sbindir}/ld10k1
+%{_sbindir}/dl10k1
+%{_sbindir}/ld10k1d
 
-%files -n %ld10k1_libname
-%_libdir/lib%{ld10k1_name}.so.*
+%files -n %{libname}
+%{_libdir}/liblo10k1.so.%{major}*
 
-%files -n %{ld10k1_libname}-devel
-%_includedir/lo10k1
-%_datadir/aclocal/ld10k1.m4
-%_libdir/lib%{ld10k1_name}.so
+%files -n %{devname}
+%{_includedir}/lo10k1
+%{_datadir}/aclocal/ld10k1.m4
+%{_libdir}/liblo10k1.so
+
