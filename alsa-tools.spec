@@ -37,16 +37,16 @@ BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(ncurses)
 
-%rename		envy24control = %{version}-%{release}
-%rename		hdspconf = %{version}-%{release}
-%rename		hdspmixer = %{version}-%{release}
-%rename		rmedigicontrol = %{version}-%{release}
-%rename		sb16_csp = %{version}-%{release}
-%rename		sbiload = %{version}-%{release}
-%rename		sscape_ctl = %{version}-%{release}
-%rename		us428control = %{version}-%{release}
-%rename		as10k1 = %{version}-%{release}
-%rename		echomixer = %{version}-%{release}
+%rename		envy24control
+%rename		hdspconf
+%rename		hdspmixer
+%rename		rmedigicontrol
+%rename		sb16_csp
+%rename		sbiload
+%rename		sscape_ctl
+%rename		us428control
+%rename		as10k1
+%rename		echomixer
 Obsoletes:	ac3dec < 1.0.27-1
 
 %description
@@ -70,11 +70,11 @@ Summary:	ALSA tools for uploading firmware to some sound cards
 License:	GPLv1
 Group:		System/Kernel and hardware
 Requires:	alsa-firmware >= 1.0.25
-%rename		hdsploader = %{version}-%{release}
-%rename		mixartloader = %{version}-%{release}
-%rename		pcxhrloader = %{version}-%{release}
-%rename		usx2yloader = %{version}-%{release}
-%rename		vxloader = %{version}-%{release}
+%rename		hdsploader
+%rename		mixartloader
+%rename		pcxhrloader
+%rename		usx2yloader
+%rename		vxloader
 
 %description	firmware
 This package contains tools for flashing firmware into certain sound cards.
