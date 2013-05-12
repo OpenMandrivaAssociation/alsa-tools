@@ -16,7 +16,7 @@
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 Name:		alsa-tools
 Version:	1.0.27
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Sound
 Url:		http://alsa-project.org
@@ -203,10 +203,6 @@ desktop-file-install \
 	--dir=%{buildroot}%{_datadir}/applications/ \
 	%{buildroot}%{_datadir}/applications/*
 
-# Fix udev dir
-mkdir -p %{buildroot}%{_prefix}/lib/
-mv %{buildroot}/lib/udev %{buildroot}%{_prefix}/lib/
-
 # udev rules file for usx2yloader - AdamW 2008/03
 mkdir -p %{buildroot}%{_udevrulesdir}
 install -p -m 0644 %{SOURCE1} %{buildroot}%{_udevrulesdir}
@@ -252,8 +248,8 @@ install -p -m 0644 %{SOURCE1} %{buildroot}%{_udevrulesdir}
 %doc usx2yloader/README
 %doc vxloader/README
 %{_udevrulesdir}/90-alsa-tools-firmware.rules
-%{_prefix}/lib/udev/tascam_fpga
-%{_prefix}/lib/udev/tascam_fw
+/lib/udev/tascam_fpga
+/lib/udev/tascam_fw
 %{_bindir}/hdsploader
 %{_bindir}/mixartloader
 %{_bindir}/pcxhrloader
