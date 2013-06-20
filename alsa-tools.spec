@@ -138,6 +138,8 @@ pushd envy24control
 touch NEWS ChangeLog
 popd
 
+find . -name "Make*" -o -name "configure.*" |xargs sed -i -e 's,configure\.in,configure.ac,g'
+
 %build
 for i in %{MODULES}; do
 pushd ${i}
