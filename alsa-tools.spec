@@ -226,9 +226,6 @@ install -p -m 0644 %{SOURCE1} %{buildroot}%{_udevrulesdir}
 %{_bindir}/sbiload
 %{_bindir}/sscape_ctl
 %{_bindir}/us428control
-%{_bindir}/hda-verb
-%{_bindir}/hdajackretask
-%{_bindir}/hwmixvolume
 %{_datadir}/applications/hdspmixer.desktop
 %{_datadir}/applications/hdspconf.desktop
 %{_datadir}/applications/echomixer.desktop
@@ -241,6 +238,9 @@ install -p -m 0644 %{SOURCE1} %{buildroot}%{_udevrulesdir}
 
 %ifnarch ppc %mips %arm
 %doc sb16_csp/COPYING sb16_csp/README
+%{_bindir}/hda-verb
+%{_bindir}/hdajackretask
+%{_bindir}/hwmixvolume
 %{_bindir}/cspctl
 %{_mandir}/man1/cspctl.*
 %endif
