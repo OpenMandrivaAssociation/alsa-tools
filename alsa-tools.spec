@@ -16,7 +16,7 @@
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 Name:		alsa-tools
 Version:	1.0.27
-Release:	7
+Release:	8
 License:	GPLv2+
 Group:		Sound
 Url:		http://alsa-project.org
@@ -202,6 +202,7 @@ desktop-file-install \
 	--remove-key="Encoding" \
 	--remove-key="FilePattern" \
 	--remove-category="Application" \
+	--set-key=Hidden --set-value=true \
 	--dir=%{buildroot}%{_datadir}/applications/ \
 	%{buildroot}%{_datadir}/applications/*
 
