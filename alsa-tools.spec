@@ -27,8 +27,8 @@ Patch1:		alsa-tools-1.0.18-sscape_ctl.c.patch
 Patch2:		alsa-tools-1.0.16-usx2yloader-udev.patch
 # (tv) fix underlinking:
 Patch3:		alsa-tools-1.0.17rc1-fix-link.patch
-# (hk) fix build errors with -Wformat -Werror=format-security
-Patch4:		alsa-tools-1.0.19-format-security.patch
+# Fix build with clang inline semantics
+Patch4:		alsa-tools-1.0.28-clang.patch
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	fltk-devel
