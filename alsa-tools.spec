@@ -15,8 +15,8 @@
 
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 Name:		alsa-tools
-Version:	1.0.28
-Release:	3
+Version:	1.0.29
+Release:	1
 License:	GPLv2+
 Group:		Sound
 Url:		http://alsa-project.org
@@ -145,7 +145,7 @@ for i in %{MODULES}; do
 pushd ${i}
 libtoolize -c -f
 autoreconf
-%configure2_5x
+%configure
 %make
 popd
 done
