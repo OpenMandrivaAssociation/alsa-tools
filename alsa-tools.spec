@@ -16,7 +16,7 @@
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 Name:		alsa-tools
 Version:	1.1.0
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Sound
 Url:		http://alsa-project.org
@@ -36,6 +36,7 @@ BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(ncurses)
+BuildRequires:	pkconfig(udev)
 
 %rename		envy24control
 %rename		hdspconf
