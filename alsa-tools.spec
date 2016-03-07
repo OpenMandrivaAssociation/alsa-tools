@@ -9,14 +9,14 @@
 %define MODULES %{MODULES_NOCSPCTL} sb16_csp %{EXTRAS}
 %endif
 
-%define major	0
-%define libname %mklibname lo10k1_%{major}
+%define major 0
+%define libname %mklibname lo10k1_ %{major}
 %define devname %mklibname lo10k1 -d
 
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 Name:		alsa-tools
 Version:	1.1.0
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Sound
 Url:		http://alsa-project.org
@@ -116,6 +116,7 @@ Use as10k1 compiler from alsa-tools package to compile patches.
 Summary:	Ld10k1_ library
 Group:		System/Libraries
 Obsoletes:	%{_lib}lo10k10 < 1.0.27-2
+Obsoletes:	%{_lib}lo10k1_0_ < 1.1.0-3
 
 %description -n %{libname}
 This is the library of ld10k1.
