@@ -15,7 +15,7 @@
 
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 Name:		alsa-tools
-Version:	1.1.3
+Version:	1.1.5
 Release:	1
 License:	GPLv2+
 Group:		Sound
@@ -27,8 +27,7 @@ Patch1:		alsa-tools-1.0.18-sscape_ctl.c.patch
 Patch2:		alsa-tools-1.0.16-usx2yloader-udev.patch
 # (tv) fix underlinking:
 Patch3:		alsa-tools-1.0.17rc1-fix-link.patch
-# Fix build with clang inline semantics
-Patch4:		alsa-tools-1.0.28-clang.patch
+Patch4:		alsa-tools-1.1.5-c++11.patch
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	fltk-devel
