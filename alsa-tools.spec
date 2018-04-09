@@ -15,7 +15,7 @@
 
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 Name:		alsa-tools
-Version:	1.1.5
+Version:	1.1.6
 Release:	1
 License:	GPLv2+
 Group:		Sound
@@ -227,14 +227,21 @@ install -p -m 0644 %{SOURCE1} %{buildroot}%{_udevrulesdir}
 %{_bindir}/sbiload
 %{_bindir}/sscape_ctl
 %{_bindir}/us428control
+%{_datadir}/icons/hicolor/*/apps/hdajackretask.png
+%{_datadir}/icons/hicolor/*/apps/hwmixvolume.png
+%{_datadir}/icons/hicolor/*/apps/echomixer.png
+%{_datadir}/icons/hicolor/*/apps/envy24control.png
+%{_datadir}/icons/hicolor/*/apps/hdspconf.png
+%{_datadir}/icons/hicolor/*/apps/hdspmixer.png
+%{_datadir}/icons/hicolor/*/apps/hwmixvolume.png
+%{_datadir}/applications/hdajackretask.desktop
 %{_datadir}/applications/hdspmixer.desktop
 %{_datadir}/applications/hdspconf.desktop
+%{_datadir}/applications/hwmixvolume.desktop
 %{_datadir}/applications/echomixer.desktop
 %{_datadir}/applications/envy24control.desktop
 %{_datadir}/applications/rmedigicontrol.desktop
 %{_datadir}/sounds/opl3/
-%{_datadir}/pixmaps/hdspconf.png
-%{_datadir}/pixmaps/hdspmixer.png
 %{_mandir}/man1/envy24control.1*
 
 %ifnarch ppc %mips %arm
