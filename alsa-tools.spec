@@ -35,6 +35,7 @@ BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(ncurses)
+BuildRequires:	pkgconfig(xft)
 
 %rename		envy24control
 %rename		hdspconf
