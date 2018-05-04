@@ -1,7 +1,7 @@
 # sb16_csp is added conditionally!
 %define MODULES_NOCSPCTL as10k1 echomixer envy24control hdspconf hdsploader hdspmixer ld10k1 mixartloader pcxhrloader rmedigicontrol seq/sbiload sscape_ctl us428control usx2yloader vxloader
 # qlo10k1 needs l10k1 and thus this package will only bootstrap if it's installed first
-%define EXTRAS	hdajackretask hda-verb hwmixvolume 
+%define EXTRAS hdajackretask hda-verb hwmixvolume
 
 %ifarch ppc %mips %arm
 %define MODULES %{MODULES_NOCSPCTL}
@@ -64,7 +64,7 @@ This source rpm package provides several sub packages:
 * sscape_ctl - ALSA SoundScape control utility
 * us428control - Control tool for Tascam 428
 
-%package	firmware
+%package firmware
 Summary:	ALSA tools for uploading firmware to some sound cards
 License:	GPLv1
 Group:		System/Kernel and hardware
@@ -75,7 +75,7 @@ Requires:	alsa-firmware >= 1.0.25
 %rename		usx2yloader
 %rename		vxloader
 
-%description	firmware
+%description firmware
 This package contains tools for flashing firmware into certain sound cards.
 The following tools are available:
 
@@ -85,12 +85,12 @@ The following tools are available:
 * usx2yloader  - second phase firmware loader for Tascam USX2Y USB sound cards
 * vxloader     - for Digigram VX sound cards
 
-%package -n	ld10k1
+%package -n ld10k1
 Summary:	AS10k1 Assembler version A0.99
 License:	GPLv1
 Group:		System/Kernel and hardware
 
-%description -n	ld10k1
+%description -n ld10k1
 This is patch loader for EMU10K1 (EMU10K2) for ALSA.
 This disables AC3 passthrough on SB Live.
 
@@ -233,7 +233,6 @@ install -p -m 0644 %{SOURCE1} %{buildroot}%{_udevrulesdir}
 %{_datadir}/icons/hicolor/*/apps/envy24control.png
 %{_datadir}/icons/hicolor/*/apps/hdspconf.png
 %{_datadir}/icons/hicolor/*/apps/hdspmixer.png
-%{_datadir}/icons/hicolor/*/apps/hwmixvolume.png
 %{_datadir}/applications/hdajackretask.desktop
 %{_datadir}/applications/hdspmixer.desktop
 %{_datadir}/applications/hdspconf.desktop
