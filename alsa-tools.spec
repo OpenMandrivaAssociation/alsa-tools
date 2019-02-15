@@ -228,16 +228,16 @@ install -p -m 0644 %{SOURCE1} %{buildroot}%{_udevrulesdir}
 %{_bindir}/sbiload
 %{_bindir}/sscape_ctl
 %{_bindir}/us428control
-%{_datadir}/icons/hicolor/*/apps/hdajackretask.png
-%{_datadir}/icons/hicolor/*/apps/hwmixvolume.png
+%optional %{_datadir}/icons/hicolor/*/apps/hdajackretask.png
+%optional %{_datadir}/icons/hicolor/*/apps/hwmixvolume.png
 %{_datadir}/icons/hicolor/*/apps/echomixer.png
 %{_datadir}/icons/hicolor/*/apps/envy24control.png
 %{_datadir}/icons/hicolor/*/apps/hdspconf.png
 %{_datadir}/icons/hicolor/*/apps/hdspmixer.png
-%{_datadir}/applications/hdajackretask.desktop
+%optional %{_datadir}/applications/hdajackretask.desktop
+%optional %{_datadir}/applications/hwmixvolume.desktop
 %{_datadir}/applications/hdspmixer.desktop
 %{_datadir}/applications/hdspconf.desktop
-%{_datadir}/applications/hwmixvolume.desktop
 %{_datadir}/applications/echomixer.desktop
 %{_datadir}/applications/envy24control.desktop
 %{_datadir}/applications/rmedigicontrol.desktop
