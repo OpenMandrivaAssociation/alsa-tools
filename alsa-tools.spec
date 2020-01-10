@@ -133,7 +133,7 @@ that made use of the ld10k1 library.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 pushd envy24control
 touch NEWS ChangeLog
