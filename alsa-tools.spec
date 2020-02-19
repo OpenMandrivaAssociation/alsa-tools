@@ -147,14 +147,14 @@ pushd ${i}
 libtoolize -c -f
 autoreconf
 %configure
-%make
+%make_build
 popd
 done
 
 %install
 for i in %{MODULES}; do
 pushd ${i}
-  %makeinstall_std
+  %make_install
 popd
 done
 
