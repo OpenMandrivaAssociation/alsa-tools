@@ -16,7 +16,7 @@
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 Name:		alsa-tools
 Version:	1.2.2
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Sound
 Url:		http://alsa-project.org
@@ -37,16 +37,11 @@ BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(xft)
 BuildRequires:	systemd
 
-%rename		envy24control
-%rename		hdspconf
-%rename		hdspmixer
-%rename		rmedigicontrol
 %rename		sb16_csp
 %rename		sbiload
 %rename		sscape_ctl
 %rename		us428control
 %rename		as10k1
-%rename		echomixer
 Obsoletes:	ac3dec < 1.0.27-1
 
 %description
@@ -131,9 +126,60 @@ Obsoletes:	%{_lib}lo10k10-devel < 1.0.27-2
 This package contains files needed in order to develop an application
 that made use of the ld10k1 library.
 
+%package echomixer
+Summary:	Mixer for Echoaudio cards
+Group:		Sound
+%rename echomixer
+
+%description echomixer
+Mixer application for Echoaudio cards
+
+%files echomixer
+%doc echomixer/AUTHORS echomixer/COPYING echomixer/README
+%{_bindir}/echomixer
+%{_datadir}/icons/hicolor/*/apps/echomixer.png
+%{_datadir}/applications/echomixer.desktop
+
+%package envy24
+Summary:	Tools for working with Envy24 soundcards
+Group:		Sound
+%rename		envy24control
+
+%description envy24
+Tools for working with Envy24 soundcards
+
+%files envy24
+%doc envy24control/AUTHORS envy24control/COPYING envy24control/README
+%{_bindir}/envy24control
+%{_datadir}/icons/hicolor/*/apps/envy24control.png
+%{_datadir}/applications/envy24control.desktop
+%{_mandir}/man1/envy24control.1*
+
+%package rme
+Summary:	Tools for working with RME Hammerfall soundcards
+Group:		Sound
+%rename		hdspconf
+%rename		hdspmixer
+%rename		rmedigicontrol
+
+%description rme
+Tools for working with RME Hammerfall soundcards
+
+%files rme
+%doc hdspconf/COPYING hdspconf/README
+%doc hdspmixer/AUTHORS hdspmixer/COPYING hdspmixer/README
+%doc rmedigicontrol/COPYING rmedigicontrol/README
+%{_bindir}/hdspconf
+%{_bindir}/hdspmixer
+%{_bindir}/rmedigicontrol
+%{_datadir}/icons/hicolor/*/apps/hdspconf.png
+%{_datadir}/icons/hicolor/*/apps/hdspmixer.png
+%{_datadir}/applications/hdspmixer.desktop
+%{_datadir}/applications/hdspconf.desktop
+%{_datadir}/applications/rmedigicontrol.desktop
+
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 pushd envy24control
 touch NEWS ChangeLog
@@ -213,36 +259,16 @@ install -p -m 0644 %{SOURCE1} %{buildroot}%{_udevrulesdir}
 
 %files
 %doc as10k1/README as10k1/COPYING as10k1/examples
-%doc echomixer/AUTHORS echomixer/COPYING echomixer/README
-%doc envy24control/AUTHORS envy24control/COPYING envy24control/README
-%doc hdspconf/COPYING hdspconf/README
-%doc hdspmixer/AUTHORS hdspmixer/COPYING hdspmixer/README
-%doc rmedigicontrol/COPYING rmedigicontrol/README
 %doc seq/sbiload/COPYING seq/sbiload/README
 %{_bindir}/as10k1
-%{_bindir}/echomixer
-%{_bindir}/envy24control
-%{_bindir}/hdspconf
-%{_bindir}/hdspmixer
-%{_bindir}/rmedigicontrol
 %{_bindir}/sbiload
 %{_bindir}/sscape_ctl
 %{_bindir}/us428control
 %optional %{_datadir}/icons/hicolor/*/apps/hdajackretask.png
 %optional %{_datadir}/icons/hicolor/*/apps/hwmixvolume.png
-%{_datadir}/icons/hicolor/*/apps/echomixer.png
-%{_datadir}/icons/hicolor/*/apps/envy24control.png
-%{_datadir}/icons/hicolor/*/apps/hdspconf.png
-%{_datadir}/icons/hicolor/*/apps/hdspmixer.png
 %optional %{_datadir}/applications/hdajackretask.desktop
 %optional %{_datadir}/applications/hwmixvolume.desktop
-%{_datadir}/applications/hdspmixer.desktop
-%{_datadir}/applications/hdspconf.desktop
-%{_datadir}/applications/echomixer.desktop
-%{_datadir}/applications/envy24control.desktop
-%{_datadir}/applications/rmedigicontrol.desktop
 %{_datadir}/sounds/opl3/
-%{_mandir}/man1/envy24control.1*
 
 %ifnarch ppc %mips %arm
 %doc sb16_csp/COPYING sb16_csp/README
