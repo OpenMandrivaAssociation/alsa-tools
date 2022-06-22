@@ -7,7 +7,7 @@
 -hotplug_files = tascam_fw.usermap tascam_fw tascam_fpga
 -hotplugdir = /etc/hotplug/usb
 +hotplug_files = tascam_fw tascam_fpga
-+hotplugdir = /lib/udev
++hotplugdir = /usr/lib/udev
  hotplug_SCRIPTS = $(hotplug_files)
  
  
@@ -20,7 +20,7 @@ diff -urd alsa-tools-1.0.14~/usx2yloader/Makefile.in alsa-tools-1.0.14/usx2yload
  hotplug_files = tascam_fw.usermap tascam_fw tascam_fpga
 -hotplugdir = /etc/hotplug/usb
 +hotplug_files = tascam_fw tascam_fpga
-+hotplugdir = /lib/udev
++hotplugdir = /usr/lib/udev
  hotplug_SCRIPTS = $(hotplug_files)
  all: all-am
  

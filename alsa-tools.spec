@@ -16,7 +16,7 @@
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 Name:		alsa-tools
 Version:	1.2.5
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Sound
 Url:		http://alsa-project.org
@@ -35,7 +35,7 @@ BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(xft)
-BuildRequires:	systemd
+BuildRequires:	systemd-rpm-macros
 
 %rename		sb16_csp
 %rename		sbiload
@@ -135,7 +135,6 @@ Group:		Sound
 Mixer application for Echoaudio cards
 
 %files echomixer
-%doc echomixer/AUTHORS echomixer/COPYING echomixer/README
 %{_bindir}/echomixer
 %{_datadir}/icons/hicolor/*/apps/echomixer.png
 %{_datadir}/applications/echomixer.desktop
@@ -149,11 +148,10 @@ Group:		Sound
 Tools for working with Envy24 soundcards
 
 %files envy24
-%doc envy24control/AUTHORS envy24control/COPYING envy24control/README
 %{_bindir}/envy24control
 %{_datadir}/icons/hicolor/*/apps/envy24control.png
 %{_datadir}/applications/envy24control.desktop
-%{_mandir}/man1/envy24control.1*
+%doc %{_mandir}/man1/envy24control.1*
 
 %package rme
 Summary:	Tools for working with RME Hammerfall soundcards
@@ -166,9 +164,6 @@ Group:		Sound
 Tools for working with RME Hammerfall soundcards
 
 %files rme
-%doc hdspconf/COPYING hdspconf/README
-%doc hdspmixer/AUTHORS hdspmixer/COPYING hdspmixer/README
-%doc rmedigicontrol/COPYING rmedigicontrol/README
 %{_bindir}/hdspconf
 %{_bindir}/hdspmixer
 %{_bindir}/rmedigicontrol
@@ -181,27 +176,27 @@ Tools for working with RME Hammerfall soundcards
 %prep
 %autosetup -p1
 
-pushd envy24control
+cd envy24control
 touch NEWS ChangeLog
-popd
+cd ..
 
 find . -name "Make*" -o -name "configure.*" |xargs sed -i -e 's,configure\.in,configure.ac,g'
 
 %build
 for i in %{MODULES}; do
-pushd ${i}
+cd ${i}
 libtoolize -c -f
 autoreconf
 %configure
 %make_build
-popd
+cd -
 done
 
 %install
 for i in %{MODULES}; do
-pushd ${i}
+cd ${i}
   %make_install
-popd
+cd -
 done
 
 # install menu entries
@@ -258,8 +253,6 @@ mkdir -p %{buildroot}%{_udevrulesdir}
 install -p -m 0644 %{SOURCE1} %{buildroot}%{_udevrulesdir}
 
 %files
-%doc as10k1/README as10k1/COPYING as10k1/examples
-%doc seq/sbiload/COPYING seq/sbiload/README
 %{_bindir}/as10k1
 %{_bindir}/sbiload
 %{_bindir}/sscape_ctl
@@ -271,21 +264,17 @@ install -p -m 0644 %{SOURCE1} %{buildroot}%{_udevrulesdir}
 %{_datadir}/sounds/opl3/
 
 %ifnarch ppc %mips %arm
-%doc sb16_csp/COPYING sb16_csp/README
 %{_bindir}/hda-verb
 %{_bindir}/hdajackretask
 %{_bindir}/hwmixvolume
 %{_bindir}/cspctl
-%{_mandir}/man1/cspctl.*
+%doc %{_mandir}/man1/cspctl.*
 %endif
 
 %files firmware
-%doc hdsploader/AUTHORS hdsploader/COPYING hdsploader/README
-%doc usx2yloader/README
-%doc vxloader/README
 %{_udevrulesdir}/90-alsa-tools-firmware.rules
-/lib/udev/tascam_fpga
-/lib/udev/tascam_fw
+%(dirname %{_udevrulesdir})/tascam_fpga
+%(dirname %{_udevrulesdir})/tascam_fw
 %{_bindir}/hdsploader
 %{_bindir}/mixartloader
 %{_bindir}/pcxhrloader
@@ -293,7 +282,6 @@ install -p -m 0644 %{SOURCE1} %{buildroot}%{_udevrulesdir}
 %{_bindir}/vxloader
 
 %files -n ld10k1
-%doc as10k1/README as10k1/COPYING as10k1/examples
 %{_bindir}/lo10k1
 %{_bindir}/init_audigy
 %{_bindir}/init_audigy_eq10
