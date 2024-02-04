@@ -15,11 +15,11 @@
 
 Summary:	Advanced Linux Sound Architecture (ALSA) tools
 Name:		alsa-tools
-Version:	1.2.5
-Release:	4
+Version:	1.2.11
+Release:	1
 License:	GPLv2+
 Group:		Sound
-Url:		http://alsa-project.org
+Url:		https://alsa-project.org
 Source0:	ftp://ftp.alsa-project.org/pub/tools/%{name}-%{version}.tar.bz2
 Source1:	90-alsa-tools-firmware.rules
 Patch1:		alsa-tools-1.0.18-sscape_ctl.c.patch
