@@ -28,6 +28,11 @@ Patch2:		alsa-tools-1.0.16-usx2yloader-udev.patch
 # (tv) fix underlinking:
 Patch3:		alsa-tools-1.0.17rc1-fix-link.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	desktop-file-utils
 BuildRequires:	fltk-devel
 BuildRequires:	pkgconfig(alsa)
